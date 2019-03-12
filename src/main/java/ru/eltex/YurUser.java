@@ -5,7 +5,8 @@ import org.apache.log4j.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/** Класс Юридическое лицо
+/**
+ * Класс Юридическое лицо
  * @author Дмитрий Городенцев
  * @version 1.0
  */
@@ -54,7 +55,8 @@ public class YurUser extends User implements CSV {
         logger.debug("Создание объекта YurUser");
     }
 
-    /** метод получения поля inn
+    /**
+     * метод получения поля inn
      * @param inn - ИНН юр.лица */
     public void setInn(String inn) {
         this.inn = inn;

@@ -43,12 +43,8 @@ public class Main {
 
         System.out.println("\nIndex: " +User.index);
 
-        //удаление содержимого файла phonebook
-        try (PrintWriter writ = new PrintWriter(User.csvFile)) {
-            writ.print("");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        user1.cleanCSV();
+
     }
 }
 

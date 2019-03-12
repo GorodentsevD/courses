@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import org.apache.log4j.*;
+import java.io.PrintWriter;
 
 /**
  * Интерфейс CSV для работы с .csv файлами
@@ -35,6 +36,17 @@ public interface CSV {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             logger.error("exception", e);
+        }
+    }
+
+    /** default метод для очистки .csv файла
+     * @exception IOException - Если возникли ошибки при чтении из файла
+     */
+    default void cleanCSV () {
+        try (PrintWriter writ = new PrintWriter(User.csvFile)) {
+            writ.print("");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
