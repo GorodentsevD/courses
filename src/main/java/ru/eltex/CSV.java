@@ -59,3 +59,9 @@ public interface CSV {
      1 ; Boris ; 900
      2 ; Alex  ; 800
  */
+
+
+ /*
+ gitignore .* gradlew.bat
+
+  */
