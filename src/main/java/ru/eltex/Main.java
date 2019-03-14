@@ -1,15 +1,15 @@
+/**
+ * Телефонная книга
+ * @author Дмитрий Городенцев
+ * @version 1.1
+ */
+
 package ru.eltex;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import org.apache.log4j.*;
-
-/**
- * Телефонная книга
- * @author Дмитрий Городенцев
- * @version 1.1
- */
 
 
 public class Main {

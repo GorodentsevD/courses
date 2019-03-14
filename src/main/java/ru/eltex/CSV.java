@@ -1,3 +1,9 @@
+/**
+ * Интерфейс CSV для работы с .csv файлами
+ * @author Дмитрий Городенцев
+ * @version 1.0
+ */
+
 package ru.eltex;
 
 import java.io.BufferedReader;
@@ -6,11 +12,6 @@ import java.io.IOException;
 import org.apache.log4j.*;
 import java.io.PrintWriter;
 
-/**
- * Интерфейс CSV для работы с .csv файлами
- * @author Дмитрий Городенцев
- * @version 1.0
- */
 
 public interface CSV {
 
@@ -20,7 +21,7 @@ public interface CSV {
     void toCSV();
 
     /** default метод для чтения из .csv файла
-     * @exception IOException - Если возникли ошибки при чтении из файла
+     * @throws  IOException - Если возникли ошибки при чтении из файла
      */
     default void fromCSV () {
 
@@ -40,7 +41,7 @@ public interface CSV {
     }
 
     /** default метод для очистки .csv файла
-     * @exception IOException - Если возникли ошибки при чтении из файла
+     * @throws  IOException - Если возникли ошибки при чтении из файла
      */
     default void cleanCSV () {
         try (PrintWriter writ = new PrintWriter(User.csvFile)) {
@@ -49,17 +50,7 @@ public interface CSV {
             System.out.println(ex.getMessage());
         }
     }
-
-    //String[] arr = str.split(;);
 }
-
-//phonebook.csv
- /*
-    ID ; FIO   ; PHONE
-     1 ; Boris ; 900
-     2 ; Alex  ; 800
- */
-
 
  /*
  gitignore .* gradlew.bat

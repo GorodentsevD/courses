@@ -1,15 +1,15 @@
+/**
+ * Класс Юридическое лицо
+ * @author Дмитрий Городенцев
+ * @version 1.0
+ */
+
 package ru.eltex;
 
 import org.apache.log4j.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
-/**
- * Класс Юридическое лицо
- * @author Дмитрий Городенцев
- * @version 1.0
- */
 
 public class YurUser extends User implements CSV {
 
@@ -62,7 +62,9 @@ public class YurUser extends User implements CSV {
         this.inn = inn;
     }
 
-    /** @return ИНН юр.лица */
+    /**
+     * метод возвращает значение ИНН юр.лица
+     * @return ИНН юр.лица */
     public String getInn() {
         return inn;
     }

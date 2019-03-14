@@ -39,12 +39,16 @@ public class User implements CSV {
         this.id = id;
     }
 
-    /** @return идентификатор */
+    /**
+     * Метод возвращает идентификатор пользователя
+     * @return идентификатор */
     public Integer getId() {
         return this.id;
     }
 
-    /** @return имя пользователя */
+    /**
+     *  метод возвращает ФИО пользователя
+     * @return имя пользователя */
     public String getFio() {
         return this.fio;
     }
@@ -146,11 +150,67 @@ gradle javadoc
     *                 .fatal()
     *      }
     *
+    *   log4j
+    *       info - логика программы
+    *       debug - информация для разработчика
+    *       waring
+    *       error
     *
     *
     * */
 
+    /*
+    13.03
 
+      ( Spring Boot ) backend     <->     frontend
+        html, REST
+
+                      DB(MySQL, mongo)    JQuery, Angular
+
+
+        http://192.168.0.102 : 8080/getusers
+                                   /getfio
+                                         |
+                                      интерфейсы
+
+        http(TCP) {get, post}
+                                GET(255 символов) / get_users
+                                      http/1.0
+
+                                POST(передача)
+
+        ServerSocket server = new ServerSocket(8080);
+        while(true) {
+            Socket client = server.accept();
+            Runnable r = new MyThread(client);
+            Thread t = new Thread(r);
+            t.start();
+        }
+
+        class MyThread implements Runnable {
+            public MyThread(Socket client) {
+                this.client = client;
+            }
+            public void run() {
+                InputStream inStream = this.client.getInputStream();
+                OutputStream outStream = this.client.getOutputStream();
+
+                Scanner in = new Scanner(inStream);
+                PrintWriter out = new PrintWriter(outStream);
+                out.write("hello");
+                out.flush();
+            }
+        }
+
+
+
+        вопросы как убить процесс, доки...
+
+
+        ДЗ: 1) клиент сервер + потоки
+            2) веб-сервер
+            3) метод get_users - выдат всех пользователей, передать текстом
+     */
 
 
 

@@ -1,15 +1,13 @@
-package ru.eltex;
-
-//import org.apache.log4j.*;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import org.apache.log4j.*;
-
 /** Класс Физическое лицо
  * @author Дмитрий Городенцев
  * @version 1.0
  */
+
+package ru.eltex;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import org.apache.log4j.*;
 
 public class FizUser extends User implements CSV {
 
@@ -63,13 +61,13 @@ public class FizUser extends User implements CSV {
     /** Задает значение поля snils физ.лица
      * @param snils - СНИЛС физ.лица */
     public void setSnils(String snils) {
-
         this.snils = snils;
     }
 
-    /** @return СНИЛС */
+    /**
+     * метод возвращает значение СНИЛС Физ.лица
+     * @return СНИЛС */
     public String getSnils() {
-
         return snils;
     }
 
