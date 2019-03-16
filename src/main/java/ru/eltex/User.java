@@ -40,11 +40,24 @@ public class User implements CSV {
     }
 
     /**
+     * Задает значение поля fio
+     * @param fio - имя пользователя
+     */
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    /**
      * Метод возвращает идентификатор пользователя
      * @return идентификатор */
     public Integer getId() {
         return this.id;
     }
+
+    /**
+     * Метод возвращает номер телефона пользователя
+     * @return номер телефона */
+    public String getPhone() { return this.phone; }
 
     /**
      *  метод возвращает ФИО пользователя
@@ -53,13 +66,7 @@ public class User implements CSV {
         return this.fio;
     }
 
-    /**
-     * Задает значение поля fio
-     * @param fio - имя пользователя
-     */
-    public void setFio(String fio) {
-        this.fio = fio;
-    }
+
 
     /**
      * Конструктор - создание нового объекта с определенными значениями

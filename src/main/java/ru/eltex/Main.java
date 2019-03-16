@@ -45,6 +45,16 @@ public class Main {
 
         user1.cleanCSV();
 
+        System.out.println("fizUser1 fio: " + fizUser1.getFio());
+        System.out.println("fizUser1 phone: " + fizUser1.getPhone());
+        System.out.println("fizUser1 inn: " + fizUser1.getINN());
+        System.out.println("fizUser1 snils: " + fizUser1.getSnils() + "\n");
+
+        System.out.println("yurUser1 fio: " + yurUser1.getFio());
+        System.out.println("yurUser1 phone: " + yurUser1.getPhone());
+        System.out.println("yurUser1 inn: " + yurUser1.getINN());
+
+
     }
 }
 

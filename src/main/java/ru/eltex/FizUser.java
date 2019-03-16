@@ -13,16 +13,13 @@ public class FizUser extends User implements CSV {
 
     private static Logger logger = Logger.getLogger(FizUser.class.getSimpleName());
 
-
-    /** Поле имени физ.лица */
+/*
     private String fio;
 
-    /** Поле идентификатора физ.лица */
     private int id;
 
-    /** Поле номера телефона физ.лица */
     private String phone;
-
+*/
     /** Поле ИНН физ.лица */
     private String inn;
 
@@ -32,9 +29,6 @@ public class FizUser extends User implements CSV {
     /** Конструктор - создание нового объекта с определенными значениями */
     public FizUser() {
 
-        this.id = 0;
-        this.fio = " ";
-        this.phone = " ";
         this.snils = " ";
         index++;
     }
@@ -48,9 +42,7 @@ public class FizUser extends User implements CSV {
      */
     public FizUser(String fio, String phone, String inn, String snils) {
 
-        this.fio = fio;
-        this.id = index;
-        this.phone = phone;
+        super(fio, phone);
         this.inn = inn;
         this.snils = snils;
         index++;
@@ -64,12 +56,27 @@ public class FizUser extends User implements CSV {
         this.snils = snils;
     }
 
+    /** Задает значение поля snils физ.лица
+     * @param inn - СНИЛС физ.лица */
+    public void setINN(String inn) {
+        this.inn = inn;
+    }
+
+
     /**
      * метод возвращает значение СНИЛС Физ.лица
      * @return СНИЛС */
     public String getSnils() {
         return snils;
     }
+
+    /**
+     * метод возвращает значение СНИЛС Физ.лица
+     * @return СНИЛС */
+    public String getINN() {
+        return inn;
+    }
+
 
     /**
      * Метод записи полей объекта в файл phonebook.csv
@@ -79,7 +86,7 @@ public class FizUser extends User implements CSV {
     public void toCSV() {
         logger.info("Запись в CSV");
         try (FileWriter fw = new FileWriter(csvFile, true)) {
-            fw.write(id + csvSplitter + fio + csvSplitter + phone + csvSplitter + inn + csvSplitter + snils + "\n");
+            fw.write(this.getId() + csvSplitter + this.getFio() + csvSplitter + this.getPhone() + csvSplitter + inn + csvSplitter + snils + "\n");
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());

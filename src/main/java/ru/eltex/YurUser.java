@@ -15,25 +15,12 @@ public class YurUser extends User implements CSV {
 
     private static Logger logger = Logger.getLogger(YurUser.class.getSimpleName());
 
-
-    /** Поле имени юр.лица */
-    private String fio;
-
-    /** Поле идентификатор юр.лица */
-    private int id;
-
-    /** Поле номера телефона юр.лица */
-    private String phone;
-
     /** Поле ИНН юр.лица */
     private String inn;
 
     /** Конструктор - создание нового объекта с определенными значениями */
     public YurUser() {
 
-        this.fio = " ";
-        this.id = -1;
-        this.phone = " ";
         this.inn = " ";
         index++;
     }
@@ -46,9 +33,7 @@ public class YurUser extends User implements CSV {
      */
     public YurUser(String fio, String phone, String inn) {
 
-        this.id = index;
-        this.fio = fio;
-        this.phone = phone;
+        super(fio, phone);
         this.inn = inn;
         index++;
 
@@ -58,14 +43,14 @@ public class YurUser extends User implements CSV {
     /**
      * метод получения поля inn
      * @param inn - ИНН юр.лица */
-    public void setInn(String inn) {
+    public void setINN(String inn) {
         this.inn = inn;
     }
 
     /**
      * метод возвращает значение ИНН юр.лица
      * @return ИНН юр.лица */
-    public String getInn() {
+    public String getINN() {
         return inn;
     }
 
@@ -77,7 +62,7 @@ public class YurUser extends User implements CSV {
     public void toCSV() {
         logger.info("Запись в CSV");
         try (FileWriter fw = new FileWriter(csvFile, true)) {
-            fw.write(id + csvSplitter + fio + csvSplitter + phone + csvSplitter + inn + "\n");
+            fw.write(this.getId() + csvSplitter + this.getFio() + csvSplitter + this.getPhone() + csvSplitter + inn + "\n");
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
