@@ -1,20 +1,33 @@
 /**
  * Телефонная книга
- * @author Дмитрий Городенцев
- * @version 1.1
+ * @author Дмитрий Городенцев <gorodentsevd@gmail.com>
+ * @version 1.0.2
  */
 
 package ru.eltex;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import org.apache.log4j.*;
-
 
 public class Main {
 
-    /** Основной метод для запуска проекта */
+    /**
+     * Поле для адреса базы данных
+     * @since 1.0.2
+     */
+    public static String url = "jdbc:mysql://127.0.0.1:3306/PhoneBook";
+
+    /**
+     * Поле логин для авторизации в СУБД
+     * @since 1.0.2
+     */
+    public static String user = "root";
+
+    /**
+     *  Поле пароль для авторизации в СУБД
+     *  @since 1.0.2
+     */
+    public static String password = "00000000";
+
     public static void main(String[] args) {
 
         ArrayList<User> users = new ArrayList<>();
@@ -30,8 +43,7 @@ public class Main {
         users.add(fizUser1);
         users.add(yurUser1);
 
-        //Field[] fields = User.class.getFields();
-
+        /*
         user1.toCSV();
         user2.toCSV();
 
@@ -39,11 +51,11 @@ public class Main {
         yurUser1.toCSV();
 
         System.out.println("\n");
-        user1.fromCSV();
+        CSV.fromCSV();
 
         System.out.println("\nIndex: " +User.index);
 
-        user1.cleanCSV();
+        CSV.cleanCSV();
 
         System.out.println("fizUser1 fio: " + fizUser1.getFio());
         System.out.println("fizUser1 phone: " + fizUser1.getPhone());
@@ -53,7 +65,16 @@ public class Main {
         System.out.println("yurUser1 fio: " + yurUser1.getFio());
         System.out.println("yurUser1 phone: " + yurUser1.getPhone());
         System.out.println("yurUser1 inn: " + yurUser1.getINN());
+        */
 
+        SQL.resetTable(url, user, password);
+
+        user1.addToDB(url, user, password);
+        user2.addToDB(url, user, password);
+        fizUser1.addToDB(url, user, password);
+        yurUser1.addToDB(url, user, password);
+
+        SQL.showTable(url, user, password);
 
     }
 }

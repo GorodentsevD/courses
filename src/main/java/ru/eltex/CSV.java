@@ -1,7 +1,7 @@
 /**
  * Интерфейс CSV для работы с .csv файлами
- * @author Дмитрий Городенцев
- * @version 1.0
+ * @author Дмитрий Городенцев <gorodentsevd@gmail.com>
+ * @version 1.0.1
  */
 
 package ru.eltex;
@@ -20,10 +20,10 @@ public interface CSV {
     /** Метод, реализующий запись в .csv файлы */
     void toCSV();
 
-    /** default метод для чтения из .csv файла
-     * @throws  IOException - Если возникли ошибки при чтении из файла
+    /**  метод для чтения из .csv файла
+     * @exception IOException - Если возникли ошибки при чтении из файла
      */
-    default void fromCSV () {
+    static void fromCSV () {
 
         logger.debug("Вызов метода fromCSV\n");
         try (FileReader fr = new FileReader(User.csvFile)) {
@@ -40,10 +40,10 @@ public interface CSV {
         }
     }
 
-    /** default метод для очистки .csv файла
-     * @throws  IOException - Если возникли ошибки при чтении из файла
+    /** метод для очистки .csv файла
+     * @exception IOException - Если возникли ошибки при чтении из файла
      */
-    default void cleanCSV () {
+    static void cleanCSV () {
         try (PrintWriter writ = new PrintWriter(User.csvFile)) {
             writ.print("");
         } catch (IOException ex) {
@@ -52,7 +52,3 @@ public interface CSV {
     }
 }
 
- /*
- gitignore .* gradlew.bat
-
-  */
