@@ -1,8 +1,3 @@
-/**
- * Интерфейс CSV для работы с .csv файлами
- * @author Дмитрий Городенцев <gorodentsevd@gmail.com>
- * @version 1.0.1
- */
 
 package ru.eltex;
 
@@ -12,7 +7,11 @@ import java.io.IOException;
 import org.apache.log4j.*;
 import java.io.PrintWriter;
 
-
+/**
+ * Интерфейс CSV для работы с .csv файлами
+ * @author Дмитрий Городенцев gorodentsevd@gmail.com
+ * @version 1.0.1
+ */
 public interface CSV {
 
     Logger logger = Logger.getLogger(User.class.getSimpleName());
@@ -20,11 +19,8 @@ public interface CSV {
     /** Метод, реализующий запись в .csv файлы */
     void toCSV();
 
-    /**  метод для чтения из .csv файла
-     * @exception IOException - Если возникли ошибки при чтении из файла
-     */
+    /**  метод для чтения из .csv файла */
     static void fromCSV () {
-
         logger.debug("Вызов метода fromCSV\n");
         try (FileReader fr = new FileReader(User.csvFile)) {
 
@@ -40,9 +36,7 @@ public interface CSV {
         }
     }
 
-    /** метод для очистки .csv файла
-     * @exception IOException - Если возникли ошибки при чтении из файла
-     */
+    /** метод для очистки .csv файла */
     static void cleanCSV () {
         try (PrintWriter writ = new PrintWriter(User.csvFile)) {
             writ.print("");

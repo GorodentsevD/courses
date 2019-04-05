@@ -1,7 +1,3 @@
-/** Класс Физическое лицо
- * @author Дмитрий Городенцев <gorodentsevd@gmail.com>
- * @version 1.0.2
- */
 
 package ru.eltex;
 
@@ -14,6 +10,10 @@ import java.sql.SQLException;
 
 import org.apache.log4j.*;
 
+/** Класс Физическое лицо
+ * @author Дмитрий Городенцев gorodentsevd@gmail.com
+ * @version 1.0.3
+ */
 public class FizUser extends User implements CSV, SQL {
 
     private static Logger logger = Logger.getLogger(FizUser.class.getSimpleName());
@@ -39,7 +39,6 @@ public class FizUser extends User implements CSV, SQL {
      * @param snils - СНИЛС физ.лица
      */
     public FizUser(String fio, String phone, String inn, String snils) {
-
         super(fio, phone);
         this.inn = inn;
         this.snils = snils;
@@ -85,9 +84,8 @@ public class FizUser extends User implements CSV, SQL {
             System.out.println(ex.getMessage());
             logger.error("exception", ex);
         }
-
     }
-
+/*
     @Override
     public void addToDB(String url, String user, String password) {
         try {
@@ -109,5 +107,44 @@ public class FizUser extends User implements CSV, SQL {
             System.out.println(se.getMessage());
         }
     }
+*/
+    @Override
+    public void addToDB(String url, String user, String password) {
+        super.addToDB(url, user, password);
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
 
+            String SQL = "UPDATE users SET inn = ?, snils = ? WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL);
+
+            preparedStatement.setString(1, this.getINN());
+            preparedStatement.setString(2, this.getSnils());
+            preparedStatement.setInt(3, this.getId());
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        }
+    }
+
+    @Override
+    public PreparedStatement sendToDB(Connection conn) {
+        PreparedStatement preparedStatement = super.sendToDB(conn);;
+        try {
+            String SQL = "UPDATE users SET inn = ?, snils = ? WHERE id = ?";
+            preparedStatement = conn.prepareStatement(SQL);
+
+            preparedStatement.setString(1, this.getINN());
+            preparedStatement.setString(2, this.getSnils());
+            preparedStatement.setInt(3, this.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        }
+        return preparedStatement;
+    }
 }

@@ -1,8 +1,3 @@
-/**
- * Класс Юридическое лицо
- * @author Дмитрий Городенцев <gorodentsevd@gmail.com>
- * @version 1.0.2
- */
 
 package ru.eltex;
 
@@ -15,7 +10,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class YurUser extends User implements CSV, SQL {
+/**
+ * Класс Юридическое лицо
+ * @author Дмитрий Городенцев gorodentsevd@gmail.com
+ * @version 1.0.3
+ */
+public class YurUser extends User implements CSV {
 
     private static Logger logger = Logger.getLogger(YurUser.class.getSimpleName());
 
@@ -24,7 +24,6 @@ public class YurUser extends User implements CSV, SQL {
 
     /** Конструктор - создание нового объекта с определенными значениями */
     public YurUser() {
-
         this.inn = " ";
         index++;
     }
@@ -36,10 +35,8 @@ public class YurUser extends User implements CSV, SQL {
      * @param inn - ИНН юр.лица
      */
     public YurUser(String fio, String phone, String inn) {
-
         super(fio, phone);
         this.inn = inn;
-
 
         logger.debug("Создание объекта YurUser");
     }
@@ -90,5 +87,22 @@ public class YurUser extends User implements CSV, SQL {
         } catch (SQLException se) {
             System.out.println(se.getMessage());
         }
+    }
+
+    @Override
+    public PreparedStatement sendToDB(Connection conn) {
+        PreparedStatement preparedStatement = super.sendToDB(conn);
+        try {
+            String SQL = "UPDATE users SET inn = ? WHERE id = ?";
+            preparedStatement = conn.prepareStatement(SQL);
+
+            preparedStatement.setString(1, this.getINN());
+            preparedStatement.setInt(2, this.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        }
+        return preparedStatement;
     }
 }
